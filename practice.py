@@ -46,7 +46,7 @@ remove_n_lines = list(map(remove_n,lines))
 join_lines = ' '.join(remove_n_lines)
 # print(join_lines)
 
-#前から4500文字＋アルファをとってきて配列に入れる
+#前から4500文字＋アルファをとってきて配列に入れるるる
 separated_block = []
 while join_lines != "":
     _tmpblock = join_lines[0:4500]
