@@ -1,0 +1,42 @@
+Nowadays, referring the ratings of targeted products in the online review/E-commerce websites,
+such as Yelp1
+
+and Amazon2
+, becomes a nature behavior for users to make decisions in daily
+consumption. A product rating reflects a user’s overall satisfaction or judgment on the product.
+Accordingly, predicting the ratings for products is a practical way to increase revenue for the
+E-commerce websites, as it could guide the recommendation of products to potential customers. In
+fact, personalized rating prediction has been raised as an important research problem in recommender
+systems since the Netflix Prize contest [5]. As demonstrated in the contest, latent factor models
+(e.g., matrix factorization [37, 38]) are the most widely used and successful techniques for rating
+prediction. These methods characterize user’s interests and item’s features using latent factors
+inferred from rating patterns in user-item rating records. However, as a typical collaborative filtering
+technique, the MF-based method easily suffers from the cold-start problem - when there are only
+few ratings for items or users [29, 53], the performance deteriorates dramatically. Besides, a rating
+only indicates the overall satisfaction of a user towards an item, it cannot explain the underlying
+rationale properly. For example, a user could give a restaurant a high rating because of its delicious
+food or due to its nice ambience. Most existing MF models cannot provide such fine-grained analysis.
+Therefore, relying solely on ratings makes it hard for these methods to explicitly and accurately
+model user’s preferences [29, 41, 45, 62].
+The above two limitations have been widely discussed and studied. For example, various types of
+side information have been incorporated into MF to alleviate the cold-start problem, such as tags [55],
+social relations [42, 53], reviews [41, 45, 63], visual features [28], and contextual information [15, 16].
+Among them, the accompanying review of a rating contains important complementary information,
+which not only encodes the information about user preferences and item features but also explains
+the underlying reasons for the rating. Therefore, in recent years, many models have been developed
+to exploit reviews with ratings to tackle the cold-start problem and also enhance the explainability
+of MF, such as HFT [45], CTR [58], RMR [41], RBLT [56], and ITLFM [63]. However, a limitation
+of these models is that they all assume a one-to-one correspondence relationship between latent
+topics (learned from reviews) and latent factors (learned from ratings), which not only limits their
+flexibility on modeling reviews and ratings but also may not be optimal.
+While substantial progress has been achieved so far, another limitation of matrix factorization
+model has seldom been discussed - each latent factor in MF is treated uniformly, which may result in
+sub-optimal recommendation results. In the training stage, MF learns the latent factors of users (pu )
+and items (qi
+) via a global optimization strategy [18]. In other words, pu and qi are optimized to
+achieve a global optimization over all the user-item ratings in the training dataset.3 As a result, the
+performance could be severely compromised locally for individual users or items. In the testing
+stage, an unknown rating is predicted by the dot product of the targeted user u’s and item i’s
+latent factors, namely, the linear combination of pu,k ∗ qi,k for each factor k with the same weight.
+However, the relative importance of a factor with respect to different user-item pairs could be very
+different. For example, a user expects high-quality service and decent ambience for an expensive
